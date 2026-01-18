@@ -1,0 +1,21 @@
+name,sku,description,selling_price,quantity
+iPhone 15 Pro Max 256GB,IP15PM-256,Latest Apple flagship with A17 Pro chip,1499.00,45
+Samsung Galaxy S24 Ultra,SGS24U-512,Premium Android with S Pen and 200MP camera,1399.00,38
+MacBook Pro 14 M3,MBP14-M3-512,Professional laptop with M3 chip,2299.00,25
+Dell XPS 15 9530,DXPS15-I7,High-performance Windows laptop,1899.00,20
+HP Spectre x360 14,HPSX360-14,2-in-1 convertible laptop,1599.00,18
+Lenovo ThinkPad X1 Carbon Gen 11,TPX1C-G11,Business ultrabook with excellent keyboard,1699.00,30
+ASUS ROG Zephyrus G16,ROGZ-G16,Gaming laptop with RTX 4070,2499.00,15
+iPad Pro 12.9 M2,IPADPRO-12.9,Professional tablet with M2 chip,1299.00,35
+Samsung Galaxy Tab S9 Ultra,GTABS9U-512,Large Android tablet for productivity,1249.00,22
+Sony WH-1000XM5,SONYWH-1000XM5,Premium noise-cancelling headphones,449.00,50
+AirPods Pro 2nd Gen,AIRPODSPRO-2,Apple's flagship earbuds with ANC,259.00,80
+Samsung Galaxy Buds2 Pro,SGBUDS2PRO,Premium wireless earbuds,229.00,65
+Logitech MX Master 3S,LGMXM3S,Ergonomic wireless mouse for professionals,129.00,70
+Apple Magic Keyboard,AMKB-NUM,Wireless keyboard with numeric keypad,159.00,45
+Corsair K95 RGB Platinum,CK95RGB-PLT,Mechanical gaming keyboard,199.00,35
+LG 27 UltraGear Gaming Monitor,LG27UG-4K,4K 144Hz gaming monitor,599.00,25
+Dell UltraSharp 27 4K,DELU27-4K,Professional 4K monitor with USB-C,649.00,20
+Samsung 1TB NVMe SSD,S1TBNVME-980PRO,High-speed M.2 internal SSD,129.00,60
+WD Black 2TB External SSD,WDBLK-2TB-EXT,Portable external SSD,219.00,45
+Anker PowerCore 20000mAh,ANKPC-20K,High-capacity portable charger,59.00,90

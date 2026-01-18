@@ -1,0 +1,30 @@
+<div class="app-container">
+  <!-- Header with Navigation -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="logo">
+        <i class="pi pi-box"></i>
+        <span>Products Manager</span>
+      </div>
+      <nav class="nav-menu">
+        <a routerLink="/products" routerLinkActive="active" class="nav-item">
+          <i class="pi pi-box"></i>
+          <span>Products</span>
+        </a>
+        <a routerLink="/companies" routerLinkActive="active" class="nav-item">
+          <i class="pi pi-building"></i>
+          <span>Companies</span>
+        </a>
+        <a routerLink="/categories" routerLinkActive="active" class="nav-item">
+          <i class="pi pi-tags"></i>
+          <span>Categories</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <router-outlet />
+  </main>
+</div>

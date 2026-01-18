@@ -1,0 +1,21 @@
+name,sku,category_id,description,selling_price,quantity
+iPhone 15 Pro Max 256GB,IP15PM-256,1,Latest Apple flagship with A17 Pro chip,1499.00,45
+Samsung Galaxy S24 Ultra,SGS24U-512,1,Premium Android with S Pen and 200MP camera,1399.00,38
+MacBook Pro 14 M3,MBP14-M3-512,1,Professional laptop with M3 chip,2299.00,25
+Dell XPS 15 9530,DXPS15-I7,1,High-performance Windows laptop,1899.00,20
+HP Spectre x360 14,HPSX360-14,1,2-in-1 convertible laptop,1599.00,18
+Lenovo ThinkPad X1 Carbon Gen 11,TPX1C-G11,1,Business ultrabook with excellent keyboard,1699.00,30
+ASUS ROG Zephyrus G16,ROGZ-G16,1,Gaming laptop with RTX 4070,2499.00,15
+iPad Pro 12.9 M2,IPADPRO-12.9,1,Professional tablet with M2 chip,1299.00,35
+Samsung Galaxy Tab S9 Ultra,GTABS9U-512,1,Large Android tablet for productivity,1249.00,22
+Sony WH-1000XM5,SONYWH-1000XM5,1,Premium noise-cancelling headphones,449.00,50
+AirPods Pro 2nd Gen,AIRPODSPRO-2,1,Apple's flagship earbuds with ANC,259.00,80
+Logitech MX Master 3S,LGMXM3S,1,Ergonomic wireless mouse for professionals,129.00,70
+Apple Magic Keyboard,AMKB-NUM,1,Wireless keyboard with numeric keypad,159.00,45
+HP LaserJet Pro,HP-LJP-001,2,Professional laser printer,349.00,15
+Canon PIXMA TS9520,CAN-TS9520,2,All-in-one wireless printer,199.00,20
+Stapler Heavy Duty,STPL-HD-001,2,Metal stapler 100 sheets capacity,29.00,50
+Paper A4 Premium Pack,PAP-A4-500,2,Premium copy paper 500 sheets,12.00,200
+Nike Dri-FIT T-Shirt Black,NK-DRY-BLK-M,3,Athletic performance t-shirt,35.00,60
+Nike Dri-FIT T-Shirt White,NK-DRY-WHT-M,3,Athletic performance t-shirt,35.00,55
+Adidas Training Tee,AD-TRN-BLU-L,3,Climalite training t-shirt,32.00,45

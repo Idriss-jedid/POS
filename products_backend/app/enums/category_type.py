@@ -1,0 +1,16 @@
+from enum import Enum
+
+
+class CategoryType(str, Enum):
+    """Category classification types"""
+    ELECTRONICS = "ELECTRONICS"
+    CLOTHING = "CLOTHING"
+    FOOD_BEVERAGE = "FOOD_BEVERAGE"
+    HOME_GARDEN = "HOME_GARDEN"
+    HEALTH_BEAUTY = "HEALTH_BEAUTY"
+    SPORTS_OUTDOORS = "SPORTS_OUTDOORS"
+    TOYS_GAMES = "TOYS_GAMES"
+    BOOKS_MEDIA = "BOOKS_MEDIA"
+    AUTOMOTIVE = "AUTOMOTIVE"
+    OFFICE_SUPPLIES = "OFFICE_SUPPLIES"
+    OTHER = "OTHER"

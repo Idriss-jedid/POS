@@ -1,0 +1,13 @@
+name,sku,category_id,description,selling_price,quantity
+Good Product 1,SKU-GOOD-001,1,This product is valid,99.00,50
+,SKU-MISSING-NAME,1,This row has no name,29.00,10
+Product No SKU,,1,This row has no SKU,49.00,20
+Product Bad Category,SKU-BAD-CAT,999,Category 999 does not exist,39.00,15
+Product Empty Category,SKU-EMPTY-CAT,,No category ID provided,19.00,30
+Good Product 2,SKU-GOOD-002,2,Another valid product,59.00,40
+Product Invalid Price,SKU-INV-PRICE,1,Price is text not number,not_a_price,25
+Product Negative Qty,SKU-NEG-QTY,1,Negative quantity,-10,abc
+Good Product 3,SKU-GOOD-003,3,Third valid product,79.00,60
+Duplicate SKU First,SKU-DUPLICATE,1,First occurrence,29.00,10
+Duplicate SKU Second,SKU-DUPLICATE,2,Duplicate SKU - should be skipped,39.00,20
+Product Category Text,SKU-CAT-TEXT,electronics,Category should be number not text,49.00,15

@@ -1,0 +1,95 @@
+<p-toast />
+<p-confirmDialog />
+
+<div class="categories-page">
+  <div class="page-header">
+    <h1 class="page-title">
+      <i class="pi pi-tags"></i>
+      Categories
+    </h1>
+    <button pButton label="Add Category" icon="pi pi-plus" (click)="openAddDialog()"></button>
+  </div>
+
+  <!-- Filter -->
+  <div class="filters-card">
+    <p-select [options]="filterOptions" [(ngModel)]="selectedType" optionLabel="label" optionValue="value" placeholder="Filter by Type" [style]="{'width': '200px'}" (onChange)="onFilter()" />
+  </div>
+
+  <!-- Categories Table -->
+  <p-table [value]="categories()" [lazy]="true" [paginator]="true" [rows]="rows" [totalRecords]="totalRecords()" [loading]="loading()" [rowsPerPageOptions]="[10, 25, 50]" (onPage)="onPageChange($event)" styleClass="p-datatable-striped">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th class="text-center">Status</th>
+        <th class="text-center">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-category>
+      <tr>
+        <td><span class="font-semibold">{{ category.code }}</span></td>
+        <td>{{ category.name }}</td>
+        <td>
+          <p-tag [value]="getCategoryTypeLabel(category.category_type)" severity="info" />
+        </td>
+        <td>{{ category.description || '-' }}</td>
+        <td class="text-center">
+          <p-tag [value]="category.is_active ? 'Active' : 'Inactive'" [severity]="category.is_active ? 'success' : 'danger'" />
+        </td>
+        <td class="text-center">
+          <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-sm" pTooltip="Edit" (click)="openEditDialog(category)"></button>
+          <button pButton icon="pi pi-power-off" class="p-button-rounded p-button-text p-button-warning p-button-sm" [pTooltip]="category.is_active ? 'Deactivate' : 'Activate'" (click)="toggleActive(category)"></button>
+          <button pButton icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger p-button-sm" pTooltip="Delete" (click)="confirmDelete(category)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="6" class="text-center p-4">
+          <i class="pi pi-tags text-4xl text-color-secondary"></i>
+          <p class="mt-2 text-color-secondary">No categories found</p>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<!-- Add/Edit Category Dialog -->
+<p-dialog [(visible)]="showDialog" [header]="editingCategory() ? 'Edit Category' : 'Add Category'" [modal]="true" [style]="{'width': '500px'}">
+  <form [formGroup]="categoryForm">
+    <div class="form-stack">
+      <div class="form-field">
+        <label for="name">Category Name *</label>
+        <input pInputText id="name" formControlName="name" class="w-full" />
+        @if (hasError('name', 'required')) {
+          <small class="p-error">Name is required</small>
+        }
+      </div>
+      <div class="form-field">
+        <label for="code">Code *</label>
+        <input pInputText id="code" formControlName="code" class="w-full" />
+        @if (hasError('code', 'required')) {
+          <small class="p-error">Code is required</small>
+        }
+      </div>
+      <div class="form-field">
+        <label for="category_type">Category Type *</label>
+        <p-select [options]="categoryTypeOptions" formControlName="category_type" optionLabel="label" optionValue="value" styleClass="w-full" />
+      </div>
+      <div class="form-field">
+        <label for="description">Description</label>
+        <textarea pTextarea id="description" formControlName="description" rows="3" class="w-full"></textarea>
+      </div>
+      <div class="form-field">
+        <label for="is_active">Active</label>
+        <p-toggleswitch formControlName="is_active" />
+      </div>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <button pButton label="Cancel" class="p-button-text" (click)="showDialog.set(false)"></button>
+    <button pButton [label]="editingCategory() ? 'Update' : 'Create'" (click)="saveCategory()" [disabled]="categoryForm.invalid"></button>
+  </ng-template>
+</p-dialog>

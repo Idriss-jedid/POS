@@ -1,0 +1,26 @@
+name,sku,category_id,description,selling_price,quantity
+Men's Cotton T-Shirt White,TN-TS-MEN-WHT-M,3,Premium cotton crew neck t-shirt,19.00,150
+Men's Cotton T-Shirt Black,TN-TS-MEN-BLK-M,3,Premium cotton crew neck t-shirt,19.00,145
+Men's Cotton T-Shirt Navy,TN-TS-MEN-NAV-M,3,Premium cotton crew neck t-shirt,19.00,140
+Men's Cotton T-Shirt Grey,TN-TS-MEN-GRY-M,3,Premium cotton crew neck t-shirt,19.00,138
+Men's V-Neck T-Shirt White,TN-TS-MVNK-WHT-L,3,Classic v-neck cotton t-shirt,21.00,100
+Men's V-Neck T-Shirt Black,TN-TS-MVNK-BLK-L,3,Classic v-neck cotton t-shirt,21.00,95
+Women's Cotton T-Shirt White,TN-TS-WMN-WHT-M,3,Fitted women's cotton t-shirt,22.00,130
+Women's Cotton T-Shirt Pink,TN-TS-WMN-PNK-M,3,Fitted women's cotton t-shirt,22.00,125
+Women's Cotton T-Shirt Blue,TN-TS-WMN-BLU-M,3,Fitted women's cotton t-shirt,22.00,120
+Men's Polo T-Shirt White,TN-TS-MPOL-WHT-L,3,Cotton polo shirt classic fit,29.00,80
+Men's Polo T-Shirt Navy,TN-TS-MPOL-NAV-L,3,Cotton polo shirt classic fit,29.00,75
+Sports T-Shirt Dri-Fit Blue,TN-TS-SPT-BLU-M,3,Moisture-wicking sports t-shirt,25.00,100
+Sports T-Shirt Dri-Fit Black,TN-TS-SPT-BLK-M,3,Moisture-wicking sports t-shirt,25.00,95
+Long Sleeve T-Shirt Grey,TN-TS-LS-GRY-L,3,Cotton long sleeve crew neck,26.00,85
+Long Sleeve T-Shirt Navy,TN-TS-LS-NAV-L,3,Cotton long sleeve crew neck,26.00,80
+Graphic T-Shirt Logo Print,TN-TS-GRPH-LOG-M,3,Printed graphic t-shirt,24.00,110
+Women's Tank Top White,TN-TS-WTK-WHT-S,3,Sleeveless athletic tank top,18.00,90
+Women's Tank Top Black,TN-TS-WTK-BLK-S,3,Sleeveless athletic tank top,18.00,85
+Kids T-Shirt Cotton Blue,TN-TS-KID-BLU-8,3,Children's cotton t-shirt,14.00,120
+Oversized T-Shirt Unisex,TN-TS-OVR-BLK-XL,3,Trendy oversized fit t-shirt,23.00,75
+Samsung Galaxy A54,TN-SGA54-128,1,Mid-range smartphone 128GB,449.00,40
+Xiaomi Redmi Note 13,TN-XRN13-256,1,Budget smartphone 256GB,299.00,55
+OnePlus Nord CE3,TN-OPN-CE3,1,Performance smartphone,349.00,35
+USB-C Hub 7-in-1,TN-USBC-HUB7,1,Multi-port USB-C adapter,45.00,80
+Wireless Charging Pad,TN-WCP-15W,1,15W fast wireless charger,29.00,100

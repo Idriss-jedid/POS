@@ -1,0 +1,207 @@
+<p-toast />
+<p-confirmDialog />
+
+<div class="products-page">
+  <div class="page-header">
+    <h1 class="page-title">
+      <i class="pi pi-box"></i>
+      Products
+    </h1>
+    <div class="header-actions">
+      <button pButton label="Import CSV" icon="pi pi-download" class="p-button-secondary" (click)="showImportDialog.set(true)"></button>
+      <button pButton label="Add Product" icon="pi pi-plus" (click)="openAddDialog()"></button>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-card">
+    <div class="filters-row">
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input pInputText [(ngModel)]="searchValue" placeholder="Search products..." (keyup.enter)="onFilter()" />
+      </span>
+
+      <p-select [options]="statusOptions" [(ngModel)]="selectedStatus" optionLabel="label" optionValue="value" placeholder="Status" [style]="{'width': '150px'}" (onChange)="onFilter()" />
+
+      <p-select [options]="companies()" [(ngModel)]="selectedCompany" optionLabel="name" optionValue="id" placeholder="Company" [showClear]="true" [style]="{'width': '180px'}" (onChange)="onFilter()" />
+
+      <p-select [options]="categories()" [(ngModel)]="selectedCategory" optionLabel="name" optionValue="id" placeholder="Category" [showClear]="true" [style]="{'width': '180px'}" (onChange)="onFilter()" />
+
+      <button pButton icon="pi pi-filter-slash" class="p-button-outlined" pTooltip="Clear Filters" (click)="clearFilters()"></button>
+    </div>
+  </div>
+
+  <!-- Products Table -->
+  <p-table [value]="products()" [lazy]="true" [paginator]="true" [rows]="rows" [totalRecords]="totalRecords()" [loading]="loading()" [rowsPerPageOptions]="[10, 25, 50]" (onPage)="onPageChange($event)" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" styleClass="p-datatable-striped">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>SKU</th>
+        <th>Name</th>
+        <th>Company</th>
+        <th>Category</th>
+        <th class="text-center">Qty</th>
+        <th class="text-right">Cost</th>
+        <th class="text-right">Price</th>
+        <th class="text-center">Status</th>
+        <th class="text-center">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td><span class="font-semibold">{{ product.sku }}</span></td>
+        <td>
+          <div class="product-name">
+            <span>{{ product.name }}</span>
+            @if (product.brand) {
+              <small class="text-color-secondary">{{ product.brand }}</small>
+            }
+          </div>
+        </td>
+        <td>{{ getCompanyName(product.company_id) }}</td>
+        <td>{{ getCategoryName(product.category_id) }}</td>
+        <td class="text-center">
+          <span [class]="product.quantity <= product.min_stock_level ? 'text-danger font-bold' : ''">
+            {{ product.quantity }}
+          </span>
+          @if (product.quantity <= product.min_stock_level) {
+            <i class="pi pi-exclamation-triangle text-warning ml-1" pTooltip="Low Stock"></i>
+          }
+        </td>
+        <td class="text-right">{{ formatCurrency(product.cost_price) }}</td>
+        <td class="text-right font-semibold">{{ formatCurrency(product.selling_price) }}</td>
+        <td class="text-center">
+          <p-tag [value]="product.status" [severity]="getStatusSeverity(product.status)" />
+        </td>
+        <td class="text-center">
+          <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-sm" pTooltip="Edit" (click)="openEditDialog(product)"></button>
+          <button pButton icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger p-button-sm" pTooltip="Delete" (click)="confirmDelete(product)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="9" class="text-center p-4">
+          <i class="pi pi-inbox text-4xl text-color-secondary"></i>
+          <p class="mt-2 text-color-secondary">No products found</p>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<!-- Add/Edit Product Dialog -->
+<p-dialog [(visible)]="showDialog" [header]="editingProduct() ? 'Edit Product' : 'Add Product'" [modal]="true" [style]="{'width': '700px'}" [draggable]="false">
+  <form [formGroup]="productForm">
+    <div class="form-grid">
+      <div class="form-field">
+        <label for="name">Product Name *</label>
+        <input pInputText id="name" formControlName="name" class="w-full" />
+        @if (hasError('name', 'required')) {
+          <small class="p-error">Name is required</small>
+        }
+      </div>
+      <div class="form-field">
+        <label for="sku">SKU *</label>
+        <input pInputText id="sku" formControlName="sku" class="w-full" />
+        @if (hasError('sku', 'required')) {
+          <small class="p-error">SKU is required</small>
+        }
+      </div>
+      <div class="form-field">
+        <label for="company_id">Company *</label>
+        <p-select [options]="companies()" formControlName="company_id" optionLabel="name" optionValue="id" placeholder="Select Company" styleClass="w-full" />
+        @if (hasError('company_id', 'required')) {
+          <small class="p-error">Company is required</small>
+        }
+      </div>
+      <div class="form-field">
+        <label for="category_id">Category *</label>
+        <p-select [options]="categories()" formControlName="category_id" optionLabel="name" optionValue="id" placeholder="Select Category" styleClass="w-full" />
+        @if (hasError('category_id', 'required')) {
+          <small class="p-error">Category is required</small>
+        }
+      </div>
+      <div class="form-field">
+        <label for="barcode">Barcode</label>
+        <input pInputText id="barcode" formControlName="barcode" class="w-full" />
+      </div>
+      <div class="form-field">
+        <label for="brand">Brand</label>
+        <input pInputText id="brand" formControlName="brand" class="w-full" />
+      </div>
+      <div class="form-field">
+        <label for="cost_price">Cost Price *</label>
+        <p-inputNumber formControlName="cost_price" mode="currency" currency="USD" styleClass="w-full" />
+      </div>
+      <div class="form-field">
+        <label for="selling_price">Selling Price *</label>
+        <p-inputNumber formControlName="selling_price" mode="currency" currency="USD" styleClass="w-full" />
+      </div>
+      <div class="form-field">
+        <label for="quantity">Quantity *</label>
+        <p-inputNumber formControlName="quantity" styleClass="w-full" />
+      </div>
+      <div class="form-field">
+        <label for="min_stock_level">Min Stock Level *</label>
+        <p-inputNumber formControlName="min_stock_level" styleClass="w-full" />
+      </div>
+      <div class="form-field">
+        <label for="unit">Unit *</label>
+        <p-select [options]="unitOptions" formControlName="unit" optionLabel="label" optionValue="value" styleClass="w-full" />
+      </div>
+      <div class="form-field">
+        <label for="status">Status *</label>
+        <p-select [options]="statusFormOptions" formControlName="status" optionLabel="label" optionValue="value" styleClass="w-full" />
+      </div>
+      <div class="form-field full-width">
+        <label for="description">Description</label>
+        <textarea pTextarea id="description" formControlName="description" rows="3" class="w-full"></textarea>
+      </div>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <button pButton label="Cancel" class="p-button-text" (click)="showDialog.set(false)"></button>
+    <button pButton [label]="editingProduct() ? 'Update' : 'Create'" (click)="saveProduct()" [disabled]="productForm.invalid"></button>
+  </ng-template>
+</p-dialog>
+
+<!-- Import CSV Dialog -->
+<p-dialog [(visible)]="showImportDialog" header="Import Products from CSV" [modal]="true" [style]="{'width': '600px'}">
+  <div class="import-content">
+    <p class="mb-3">Upload a CSV file to import products. The CSV must include a <strong>category_id</strong> column for each product.</p>
+
+    <button pButton label="Download Template" icon="pi pi-download" class="p-button-outlined mb-4" (click)="downloadTemplate()"></button>
+
+    <div class="field mb-3">
+      <label for="importCompany" class="block mb-2">Company (Supplier) *</label>
+      <p-select
+        id="importCompany"
+        [(ngModel)]="importCompanyId"
+        [options]="companies()"
+        optionLabel="name"
+        optionValue="id"
+        placeholder="Select the company/supplier for all products"
+        [style]="{'width': '100%'}"
+        [showClear]="true"
+      ></p-select>
+      <small class="text-gray-500">All products in this CSV will be associated with this company</small>
+    </div>
+
+    <div class="field mb-3">
+      <label class="block mb-2">CSV File *</label>
+      <p-fileUpload
+        mode="basic"
+        accept=".csv"
+        [maxFileSize]="10000000"
+        (onSelect)="onFileSelect($event)"
+        chooseLabel="Choose CSV File"
+        [auto]="false"
+      />
+      <small class="text-gray-500">CSV must have columns: name, sku, category_id, selling_price, quantity</small>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <button pButton label="Cancel" class="p-button-text" (click)="closeImportDialog()"></button>
+    <button pButton label="Upload" icon="pi pi-upload" (click)="uploadImport()" [disabled]="!importFile || !importCompanyId"></button>
+  </ng-template>
+</p-dialog>
